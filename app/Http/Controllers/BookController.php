@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\BookCode;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -22,18 +23,25 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'code' => ['required'],
             'title' => ['required'],
             'description' => ['required'],
             'year' => ['required'],
             'publisher' => ['required'],
         ]);
 
+        $code = BookCode::create([
+            'code' => $request->code,
+        ]);
+
         $book = Book::create([
+            'book_code_id' => $code->id,
             'title' => $request->title,
             'description' => $request->description,
             'year' => $request->year,
             'publisher' => $request->publisher,
         ]);
+        
 
         session()->flash('success', 'Book created successfully');
         return redirect()->route('book.index');
@@ -47,13 +55,19 @@ class BookController extends Controller
     public function update(Book $book, Request $request)
     {
         $request->validate([
+            'code' => ['required'],
             'title' => ['required'],
             'description' => ['required'],
             'year' => ['required'],
             'publisher' => ['required'],
         ]);
 
+        $code = BookCode::updateOrcreate([
+            'code' => $request->code,
+        ]);
+
         $book->update([
+            'book_code_id' => $code->id,
             'title' => $request->title,
             'description' => $request->description,
             'year' => $request->year,
