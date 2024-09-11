@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FacilityController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,6 +41,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/facility/{facility}/edit', [FacilityController::class, 'edit'])->name('facility.edit');
     Route::put('/facility/{facility}/edit', [FacilityController::class, 'update'])->name('facility.update');
     Route::delete('/facility/{facility}', [FacilityController::class, 'destroy'])->name('facility.destroy');
+
+    // category route
+    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/category/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::put('/category/{category}/edit', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
