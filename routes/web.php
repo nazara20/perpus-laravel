@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 
@@ -11,8 +12,9 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+})
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     // route user
@@ -31,11 +33,17 @@ Route::middleware('auth')->group(function () {
     Route::put('/book/{book}/edit', [BookController::class, 'update'])->name('book.update');
     Route::delete('/book/{book}', [BookController::class, 'destroy'])->name('book.destroy');
 
+    // facility route
+    Route::get('/facility', [FacilityController::class, 'index'])->name('facility.index');
+    Route::get('/facility/create', [FacilityController::class, 'create'])->name('facility.create');
+    Route::post('/facility', [FacilityController::class, 'store'])->name('facility.store');
+    Route::get('/facility/{facility}/edit', [FacilityController::class, 'edit'])->name('facility.edit');
+    Route::put('/facility/{facility}/edit', [FacilityController::class, 'update'])->name('facility.update');
+    Route::delete('/facility/{facility}', [FacilityController::class, 'destroy'])->name('facility.destroy');
 
-    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
