@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FacilityController;
@@ -58,6 +59,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/bookshelf/{bookshelf}/edit', [BookshelfController::class, 'edit'])->name('bookshelf.edit');
     Route::put('/bookshelf/{bookshelf}/edit', [BookshelfController::class, 'update'])->name('bookshelf.update');
     Route::delete('/bookshelf/{bookshelf}', [BookshelfController::class, 'destroy'])->name('bookshelf.destroy');
+
+    // visit route
+    Route::get('/visit', [VisitController::class, 'index'])->name('visit.index');
+    Route::get('/visit/create', [VisitController::class, 'create'])->name('visit.create');
+    Route::post('/visit', [VisitController::class, 'store'])->name('visit.store');
+    Route::get('/visit/{visit}/edit', [VisitController::class, 'edit'])->name('visit.edit');
+    Route::put('/visit/{visit}/edit', [VisitController::class, 'update'])->name('visit.update');
+    Route::delete('/visit/{visit}', [VisitController::class, 'destroy'])->name('visit.destroy');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
