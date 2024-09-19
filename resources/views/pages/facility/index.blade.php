@@ -32,6 +32,9 @@
                                     Name
                                 </th>
                                 <th class="px-6 py-3">
+                                    Brand Name
+                                </th>
+                                <th class="px-6 py-3">
                                     Quantity
                                 </th>
                                 <th class="px-6 py-3">
@@ -54,7 +57,10 @@
                                         {{ $facility->name }}
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{ $facility->quantity }} Fasilitas
+                                        {{ $facility->brand->name ?? '-' }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $facility->quantity }} Unit
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $facility->created_at }}

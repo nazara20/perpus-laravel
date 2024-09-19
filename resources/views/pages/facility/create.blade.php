@@ -32,6 +32,13 @@
                     <form action="{{ route('facility.store') }}" method="POST" class="max-w-sm mx-auto">
                         @csrf
                         <div class="mb-5">
+                            <label for="brand_name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand Name</label>
+                            <input type="text" name="brand_name"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                placeholder="Masukkan Nama Brand" required />
+                        </div>
+                        <div class="mb-5">
                             <label for="name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                             <input type="text" name="name"
