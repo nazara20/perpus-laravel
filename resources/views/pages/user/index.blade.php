@@ -26,7 +26,19 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                             <tr>
                                 <th class="px-6 py-3">
+                                    NO
+                                </th>
+                                <th class="px-6 py-3">
+                                    NIP
+                                </th>
+                                <th class="px-6 py-3">
                                     Nama
+                                </th>
+                                <th class="px-6 py-3">
+                                    Address
+                                </th>
+                                <th class="px-6 py-3">
+                                    Phone
                                 </th>
                                 <th class="px-6 py-3">
                                     Email
@@ -44,8 +56,21 @@
                                 <tr class="bg-white border-b">
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $user->name }}
+                                        {{ $loop->iteration }}.
                                     </th>
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ $user->profile->nip ?? '-' }}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ $user->name }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $user->profile->address ?? '-' }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $user->profile->phone ?? '-' }}
+                                    </td>
                                     <td class="px-6 py-4">
                                         {{ $user->email }}
                                     </td>

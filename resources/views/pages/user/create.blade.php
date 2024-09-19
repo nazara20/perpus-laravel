@@ -32,11 +32,32 @@
                     <form action="{{ route('user.store') }}" method="POST" class="max-w-sm mx-auto">
                         @csrf
                         <div class="mb-5">
+                            <label for="nip"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
+                            <input type="number" name="nip"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                placeholder="Masukkan NIP" required />
+                        </div>
+                        <div class="mb-5">
                             <label for="name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
                             <input type="text" name="name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="Masukkan Nama" required />
+                        </div>
+                        <div class="mb-5">
+                            <label for="address"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
+                            <input type="text" name="address"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                placeholder="Masukkan Alamat" required />
+                        </div>
+                        <div class="mb-5">
+                            <label for="phone"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor HP</label>
+                            <input type="text" name="phone"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                placeholder="Masukkan Nomor HP" required />
                         </div>
                         <div class="mt-5">
                             <label for="email"
