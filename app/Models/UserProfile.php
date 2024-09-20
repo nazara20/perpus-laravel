@@ -12,10 +12,16 @@ class UserProfile extends Model
         'nip',
         'address',
         'phone',
+        'position_id',
     ];
 
     public function user()
     {
         return $this->hasOne(User::class, 'profile_id');
+    }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class, 'position_id');
     }
 }

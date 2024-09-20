@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Rules\Password;
 use App\Models\User;
+use App\Models\Position;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -25,6 +26,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'position_name' => ['required', 'string', 'max:255'],
             'nip' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
@@ -33,7 +35,12 @@ class UserController extends Controller
             'password' => ['required', 'confirmed'],
         ]);
 
+        $position = Position::create([
+            'position_name' => $request->position_name,
+        ]);
+
         $profile = UserProfile::create([
+            'position_id' => $position->id,
             'nip' => $request->nip,
             'address' => $request->address,
             'phone' => $request->phone,
@@ -58,6 +65,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
+            'position_name' => ['required', 'string', 'max:255'],
             'nip' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
@@ -66,11 +74,20 @@ class UserController extends Controller
             'password' => ['nullable', 'confirmed'],
         ]);
 
+        $position = Position::updateOrCreate(
+            [
+                'id' => $user->profile->position_id
+            ], 
+            [
+            'position_name' => $request->position_name,
+        ]);
+
         $profile = UserProfile::updateOrCreate(
             [
                 'id' => $user->profile_id
             ], 
             [
+            'position_id' => $position->id,
             'nip' => $request->nip,
             'address' => $request->address,
             'phone' => $request->phone,

@@ -35,6 +35,9 @@
                                     Nama
                                 </th>
                                 <th class="px-6 py-3">
+                                    Posisi
+                                </th>
+                                <th class="px-6 py-3">
                                     Address
                                 </th>
                                 <th class="px-6 py-3">
@@ -64,6 +67,9 @@
                                     </th>
                                     <td class="px-6 py-4">
                                         {{ $user->name }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $user->profile->position->position_name ?? '-' }}
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $user->profile->address ?? '-' }}
