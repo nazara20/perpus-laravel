@@ -33,6 +33,17 @@
                         @csrf
                         <div class="mb-5">
                             <label for="code"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                            <select name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="">
+                                <option value="">Select Category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-5">
+                            <label for="code"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code</label>
                             <input type="text" name="code"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"

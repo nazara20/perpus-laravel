@@ -26,12 +26,16 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                             <tr>
                                 <th class="px-6 py-3">
-                                    No                                </th>
+                                    No                                
+                                </th>
                                 <th class="px-6 py-3">
                                     Code
                                 </th>
                                 <th class="px-6 py-3">
                                     Title
+                                </th>
+                                <th class="px-6 py-3">
+                                    Category
                                 </th>
                                 <th class="px-6 py-3">
                                     Deskripsi
@@ -65,6 +69,9 @@
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $book->title }}
                                     </th>
+                                    <td class="px-6 py-4">
+                                        {{ $book->category->name ?? '-' }}
+                                    </td>
                                     <td class="px-6 py-4">
                                         {{ $book->description }}
                                     </td>

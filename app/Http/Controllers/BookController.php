@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\BookCode;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -17,12 +18,15 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('pages.book.create');
+        $categories = Category::all();
+
+        return view('pages.book.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'category_id' => ['required'],
             'code' => ['required'],
             'title' => ['required'],
             'description' => ['required'],
@@ -35,6 +39,7 @@ class BookController extends Controller
         ]);
 
         $book = Book::create([
+            'category_id' => $request->category_id,
             'book_code_id' => $code->id,
             'title' => $request->title,
             'description' => $request->description,
@@ -49,12 +54,15 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
-        return view('pages.book.edit', compact('book'));
+        $categories = Category::all();
+
+        return view('pages.book.edit', compact('book', 'categories'));
     }
 
     public function update(Book $book, Request $request)
     {
         $request->validate([
+            'category_id' => ['required'],
             'code' => ['required'],
             'title' => ['required'],
             'description' => ['required'],
@@ -67,6 +75,7 @@ class BookController extends Controller
         ]);
 
         $book->update([
+            'category_id' => $request->category_id,
             'book_code_id' => $code->id,
             'title' => $request->title,
             'description' => $request->description,
